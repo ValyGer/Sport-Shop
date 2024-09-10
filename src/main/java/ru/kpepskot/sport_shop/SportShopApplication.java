@@ -5,9 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class SportShopApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(SportShopApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(SportShopApplication.class, args);
+    }
 }
