@@ -4,9 +4,9 @@
 Pet мини-приложение для отработки ключевых навыков программирования на JAVA. 
 Используемые технологии: 
 Java Core;
-*Spring Boot;
-*Spring Security;
-*Docker;
-*PostgreSQL;
-*HTML;
+* Spring Boot;
+* Spring Security;
+* Docker;
+* PostgreSQL;
+* HTML;
 Приложение будет развернуто на удаленном сервере.
