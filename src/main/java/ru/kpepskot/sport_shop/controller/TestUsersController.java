@@ -27,6 +27,4 @@ public class TestUsersController {
         return ResponseEntity.status(HttpStatus.OK).body(userService.findById(userId));
     }
 
-
-
 }
