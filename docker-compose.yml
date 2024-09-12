@@ -1,0 +1,26 @@
+version: '3.1'
+services:
+  sport_shop:
+    build: sport_shop
+    image: sport_shop-image
+    container_name: sport_shop-service
+    ports:
+      - "8080:2020"
+    depends_on:
+      - shop_db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://shop_db:5432/shop_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=123456
+
+  shop_db:
+    image: postgres:14-alpine
+    volumes:
+      - /data/shop_db
+    container_name: shop_db
+    ports:
+      - "6542:5432"
+    environment:
+      - POSTGRES_DB=shop_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
