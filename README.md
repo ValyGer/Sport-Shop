@@ -9,4 +9,5 @@ Java Core;
 * Docker;
 * PostgreSQL;
 * HTML;
+
 Приложение будет развернуто на удаленном сервере.
