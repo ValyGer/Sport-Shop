@@ -2,6 +2,8 @@ package ru.kpepskot.sport_shop.dto;
 
 import lombok.*;
 
+import javax.validation.Valid;
+
 @Getter
 @Setter
 @ToString
@@ -10,6 +12,6 @@ import lombok.*;
 @Builder
 public class UserDto {
     private long id;
-    private String email;
+    private String userEmail;
     private String userName;
 }

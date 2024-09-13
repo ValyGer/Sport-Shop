@@ -2,11 +2,16 @@ package ru.kpepskot.sport_shop.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.kpepskot.sport_shop.constant.Role;
 import ru.kpepskot.sport_shop.dto.UserDto;
 import ru.kpepskot.sport_shop.dto.UserDtoMapper;
+import ru.kpepskot.sport_shop.dto.UserInitDto;
+import ru.kpepskot.sport_shop.dto.UserInitDtoMapper;
 import ru.kpepskot.sport_shop.entity.User;
+import ru.kpepskot.sport_shop.error.NotFoundException;
 import ru.kpepskot.sport_shop.repository.UserRepository;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -15,14 +20,23 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserDtoMapper userDtoMapper;
+    private final UserInitDtoMapper userInitDtoMapper;
 
     @Override
-    public UserDto findById(Long id) {
+    public UserDto findUserById(Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             return userDtoMapper.UserToUserDto(optionalUser.get());
         } else {
-            throw new RuntimeException("User not found!");
+            throw new NotFoundException("Пользователь с id = " + id + " не был найден");
         }
+    }
+
+    @Override
+    @Transactional
+    public UserDto createUser(UserInitDto userInitDto) {
+        User user = userInitDtoMapper.UserInitDtoToUser(userInitDto);
+        user.setUserRole(Role.USER.toString());
+        return userDtoMapper.UserToUserDto(userRepository.save(user));
     }
 }
