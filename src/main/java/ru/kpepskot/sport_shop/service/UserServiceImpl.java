@@ -3,10 +3,7 @@ package ru.kpepskot.sport_shop.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.kpepskot.sport_shop.constant.Role;
-import ru.kpepskot.sport_shop.dto.UserDto;
-import ru.kpepskot.sport_shop.dto.UserDtoMapper;
-import ru.kpepskot.sport_shop.dto.UserInitDto;
-import ru.kpepskot.sport_shop.dto.UserInitDtoMapper;
+import ru.kpepskot.sport_shop.dto.*;
 import ru.kpepskot.sport_shop.entity.User;
 import ru.kpepskot.sport_shop.error.NotFoundException;
 import ru.kpepskot.sport_shop.repository.UserRepository;
@@ -38,5 +35,18 @@ public class UserServiceImpl implements UserService {
         User user = userInitDtoMapper.UserInitDtoToUser(userInitDto);
         user.setUserRole(Role.USER.toString());
         return userDtoMapper.UserToUserDto(userRepository.save(user));
+    }
+
+    @Override
+    @Transactional
+    public UserDto updateUserById(Long userId, UserInitUpdateDto userInitUpdateDto) {
+        return null;
+    }
+
+
+    @Override
+    public void deleteUserById(Long userId) {
+       findUserById(userId);
+       userRepository.deleteById(userId);
     }
 }

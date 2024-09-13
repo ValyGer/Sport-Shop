@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.kpepskot.sport_shop.dto.UserDto;
 import ru.kpepskot.sport_shop.dto.UserInitDto;
+import ru.kpepskot.sport_shop.dto.UserInitUpdateDto;
 import ru.kpepskot.sport_shop.service.UserService;
 
 import javax.validation.Valid;
@@ -19,7 +20,7 @@ public class UserController {
 
     @GetMapping
     public String getCategory() {
-        return "Добро пожаловать в тестовое пространство";
+        return "Добро пожаловать в тестовое пространство!";
     }
 
     @GetMapping("/{userId}")
@@ -30,5 +31,17 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserInitDto userInitDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(userInitDto));
+    }
+
+    @PutMapping("/{userId}")
+    public ResponseEntity<UserDto> updateUserById(@PathVariable Long userId,
+                                                  @RequestBody UserInitUpdateDto userInitUpdateDto) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.updateUserById(userId, userInitUpdateDto));
+    }
+
+    @DeleteMapping("/{userId}")
+    public HttpStatus deleteUserById(@PathVariable Long userId) {
+        userService.deleteUserById(userId);
+        return HttpStatus.NO_CONTENT;
     }
 }
