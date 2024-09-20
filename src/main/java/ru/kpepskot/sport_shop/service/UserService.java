@@ -1,9 +1,10 @@
 package ru.kpepskot.sport_shop.service;
 
-import org.springframework.http.HttpStatus;
-import ru.kpepskot.sport_shop.dto.UserDto;
-import ru.kpepskot.sport_shop.dto.UserInitDto;
-import ru.kpepskot.sport_shop.dto.UserInitUpdateDto;
+import ru.kpepskot.sport_shop.dto.user.UserDto;
+import ru.kpepskot.sport_shop.dto.user.UserInitDto;
+import ru.kpepskot.sport_shop.dto.user.UserInitUpdateDto;
+
+import java.util.List;
 
 public interface UserService {
     UserDto findUserById(Long id);
@@ -13,4 +14,6 @@ public interface UserService {
     UserDto updateUserById(Long userId, UserInitUpdateDto userInitUpdateDto);
 
     void deleteUserById(Long userId);
+
+    List<UserDto> findAllUsers();
 }

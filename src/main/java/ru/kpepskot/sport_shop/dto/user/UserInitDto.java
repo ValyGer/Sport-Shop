@@ -1,4 +1,4 @@
-package ru.kpepskot.sport_shop.dto;
+package ru.kpepskot.sport_shop.dto.user;
 
 import lombok.*;
 

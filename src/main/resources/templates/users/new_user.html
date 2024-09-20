@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый пользователь &ndash; pet-проект для отработки навыков!</title>
+</head>
+<body>
+<a data-th-href="@{/users}">&larr; К списку пользователей</a>
+    <h1>Новый пользователь</h1>
+    <form method="post" data-th-action="@{/users/new}">
+        <label>
+            Адрес электронной почты:<br>
+            <input type="text" name="userEmail">
+        </label><br>
+        <label>
+            Имя пользователя:<br>
+            <textarea name="userName"></textarea>
+        </label><br>
+        <label>
+            Пароль:<br>
+            <textarea name="password"></textarea>
+        </label><br>
+        <button type="submit">Создать</button>
+    </form>
+</body>
+</html>
