@@ -63,10 +63,10 @@ public class UserController {
         return "redirect:/users/%d".formatted(userId);
     }
 
-
-//    @DeleteMapping("/{userId}")
-//    public HttpStatus deleteUserById(@PathVariable Long userId) {
-//        userService.deleteUserById(userId);
-//        return HttpStatus.NO_CONTENT;
-//    }
+    // Удаление пользователя
+    @PostMapping("/{userId:\\d+}/delete")
+    public String deleteUserById(@PathVariable Long userId) {
+        this.userService.deleteUserById(userId);
+        return "redirect:/users";
+    }
 }

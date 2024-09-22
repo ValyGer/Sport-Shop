@@ -13,5 +13,8 @@
     <li><strong>email</strong>: <span data-th-text="${user.userEmail}"></span></li>
 </ul>
 <a data-th-href="@{/users/{userId}/edit(userId=${user.id})}">&larr; Редактировать</a>
+<form method="post" data-th-action="@{/users/{userId}/delete(userId=${user.id})}">
+    <button type="submit">Удалить</button>
+</form>
 </body>
 </html>
