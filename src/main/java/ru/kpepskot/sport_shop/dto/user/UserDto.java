@@ -2,8 +2,6 @@ package ru.kpepskot.sport_shop.dto.user;
 
 import lombok.*;
 
-import javax.validation.Valid;
-
 @Getter
 @Setter
 @ToString

@@ -10,6 +10,7 @@ import ru.kpepskot.sport_shop.repository.UserRepository;
 import ru.kpepskot.sport_shop.service.UserService;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -43,7 +44,19 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public UserDto updateUserById(Long userId, UserInitUpdateDto userInitUpdateDto) {
-        return null;
+        Optional<User> optionalUser = userRepository.findById(userId);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            if (userInitUpdateDto.getUserName() != null) {
+                user.setUserName(userInitUpdateDto.getUserName());
+            }
+            if (userInitUpdateDto.getPassword() != null) {
+                user.setPassword(userInitUpdateDto.getPassword());
+            }
+            return userDtoMapper.userToUserDto(userRepository.save(user));
+        } else {
+            throw new NotFoundException("Пользователь с id = " + userId + " не был найден");
+        }
     }
 
 
@@ -55,6 +68,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDto> findAllUsers() {
-        return userRepository.findAll().stream().map(userDtoMapper::userToUserDto).collect(Collectors.toList());
+        List<User> userList = userRepository.findAll();
+        List<UserDto> userDtoList = new ArrayList<>();
+        for (User user: userList){
+            UserDto userDto = userDtoMapper.userToUserDto(user);
+            userDtoList.add(userDto);
+        }
+        return userDtoList;
     }
 }

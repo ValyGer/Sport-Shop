@@ -1,11 +1,12 @@
 package ru.kpepskot.sport_shop.controller.user;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import ru.kpepskot.sport_shop.dto.user.UserDto;
 import ru.kpepskot.sport_shop.dto.user.UserInitDto;
 import ru.kpepskot.sport_shop.dto.user.UserInitUpdateDto;
@@ -20,42 +21,52 @@ public class UserController {
 
     private final UserService userService;
 
-    // Получение всех пользователей
+    // Получение страницы списка всех пользователей
     @GetMapping
     public String getAllUsers(Model model) {
         model.addAttribute("users", this.userService.findAllUsers());
         return "users/list";
     }
 
-    // Получение данных пользователя
-    @GetMapping("/{userId}")
-    public String getUserById(Model model, @PathVariable Long userId) {
-        model.addAttribute("users/id", this.userService.findUserById(userId));
-        return "users/id";
-    }
-
-    //     Получение страницы создания пользователя
+    // Получение страницы создания нового пользователя
     @GetMapping("/new")
     public String getUserPageCreate() {
         return "users/new_user";
     }
 
-    //     Создание нового пользователя
+    // Создание нового пользователя и возврат на страницу пользователя
     @PostMapping("/new")
     public String createUser(@Valid UserInitDto userInitDto) {
-        this.userService.createUser(userInitDto);
-        return "redirect : users/list";
+        UserDto userDto = this.userService.createUser(userInitDto);
+        return "redirect:/users/%d".formatted(userDto.getId());
     }
 
-    @PutMapping("/{userId}")
-    public ResponseEntity<UserDto> updateUserById(@PathVariable Long userId,
-                                                  @RequestBody UserInitUpdateDto userInitUpdateDto) {
-        return ResponseEntity.status(HttpStatus.OK).body(userService.updateUserById(userId, userInitUpdateDto));
+    // Получение страницы пользователя
+    @GetMapping("/{userId:\\d+}")
+    public String getUserById(Model model, @PathVariable("userId") Long userId) {
+        model.addAttribute("user", this.userService.findUserById(userId));
+        return "users/user";
     }
 
-    @DeleteMapping("/{userId}")
-    public HttpStatus deleteUserById(@PathVariable Long userId) {
-        userService.deleteUserById(userId);
-        return HttpStatus.NO_CONTENT;
+
+    // Получение страницы изменения пользователя
+    @GetMapping("/{userId:\\d+}/edit")
+    public String getUserPageEdit(Model model, @PathVariable("userId") Long userId) {
+        model.addAttribute("user", this.userService.findUserById(userId));
+        return "users/edit_user";
     }
+
+    // Изменение данных пользователя
+    @PostMapping("/{userId:\\d+}/edit")
+    public String updateUserById(@PathVariable("userId") Long userId, @Valid UserInitUpdateDto userInitUpdateDto) {
+        this.userService.updateUserById(userId, userInitUpdateDto);
+        return "redirect:/users/%d".formatted(userId);
+    }
+
+
+//    @DeleteMapping("/{userId}")
+//    public HttpStatus deleteUserById(@PathVariable Long userId) {
+//        userService.deleteUserById(userId);
+//        return HttpStatus.NO_CONTENT;
+//    }
 }

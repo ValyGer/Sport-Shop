@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование пользователя &laquo; [[${user.userName}]]&raquo; &ndash; pet-проект для отработки навыков!</title>
+</head>
+<body>
+<a data-th-href="@{/users/{userId}(userId=${user.id})}">&larr; К пользователю</a>
+    <h1>Редактирование пользователя [[${user.userName}]]</h1>
+    <form method="post" data-th-action="@{/users/{userId}/edit(userId=${user.id})}">
+        <label>
+            Имя пользователя:<br>
+            <input type="text" name="userName">
+        </label><br>
+        <label>
+            Пароль:<br>
+            <input type="text" name="password">
+        </label><br>
+        <button type="submit">Изменить</button>
+    </form>
+</body>
+</html>

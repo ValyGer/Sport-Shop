@@ -17,9 +17,9 @@ public class UserInitDto {
     @NotBlank
     private String userEmail;
     @NotBlank
-    @Size(min = 3, max = 120, message = "Длинна имени должна быть не менее 3 и не более 120 символов")
+    @Size(min = 3, max = 120, message = "Длина имени должна быть не менее 3 и не более 120 символов")
     private String userName;
     @NotBlank
-    @Size(min = 6, max = 12, message = "Длинна пароля должна быть не менее 6 и не более 12 символов")
+    @Size(min = 3, max = 12, message = "Длина пароля должна быть не менее 3 и не более 12 символов")
     private String password;
 }
