@@ -48,7 +48,6 @@ public class UserController {
         return "users/user";
     }
 
-
     // Получение страницы изменения пользователя
     @GetMapping("/{userId:\\d+}/edit")
     public String getUserPageEdit(Model model, @PathVariable("userId") Long userId) {
