@@ -1,7 +1,9 @@
 package ru.kpepskot.sport_shop.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import ru.kpepskot.sport_shop.constant.Role;
 import ru.kpepskot.sport_shop.dto.user.*;
 import ru.kpepskot.sport_shop.entity.User;
@@ -22,6 +24,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserDtoMapper userDtoMapper;
     private final UserInitDtoMapper userInitDtoMapper;
+    private final ImageServiceImpl imageService;
 
     @Override
     public UserDto findUserById(Long id) {
@@ -38,7 +41,15 @@ public class UserServiceImpl implements UserService {
     public UserDto createUser(UserInitDto userInitDto) {
         User user = userInitDtoMapper.UserInitDtoToUser(userInitDto);
         user.setUserRole(Role.USER.toString());
+        saveOnDisk(userInitDto.getImage());
         return userDtoMapper.userToUserDto(userRepository.save(user));
+    }
+
+    @SneakyThrows
+    private void saveOnDisk(MultipartFile image) {
+        if (!image.isEmpty()) {
+            imageService.upload(image.getOriginalFilename(), image.getInputStream());
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 package ru.kpepskot.sport_shop.entity;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 
@@ -23,4 +24,5 @@ public class User {
     private String userRole;
     @Column(name = "user_password")
     private String password;
+    private String image;
 }

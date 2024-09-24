@@ -7,7 +7,7 @@
 <body>
 <a data-th-href="@{/users/list}">&larr; К списку пользователей</a>
     <h1>Новый пользователь</h1>
-    <form method="post" data-th-action="@{/users/new}">
+    <form method="post" data-th-action="@{/users/new}" enctype="multipart/form-data">
         <label>
             Адрес электронной почты:<br>
             <input type="text" name="userEmail">
@@ -19,6 +19,10 @@
         <label>
             Пароль:<br>
             <input type="text" name="password">
+        </label><br>
+        <label>
+            Картинка:<br>
+            <input type="file" name="image">
         </label><br>
         <button type="submit">Создать</button>
     </form>
