@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.kpepskot.sport_shop.constant.Role;
 import ru.kpepskot.sport_shop.dto.user.*;
 import ru.kpepskot.sport_shop.entity.User;
+import ru.kpepskot.sport_shop.error.InvalidRequestException;
 import ru.kpepskot.sport_shop.error.NotFoundException;
 import ru.kpepskot.sport_shop.repository.UserRepository;
 import ru.kpepskot.sport_shop.service.UserService;
@@ -63,13 +64,21 @@ public class UserServiceImpl implements UserService {
         Optional<User> optionalUser = userRepository.findById(userId);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            if (userInitUpdateDto.getUserName() != null) {
-                user.setUserName(userInitUpdateDto.getUserName());
+            if (!userInitUpdateDto.getUserName().isEmpty()) {
+                if ((userInitUpdateDto.getUserName().length() >= 3) && (userInitUpdateDto.getUserName().length() < 120)) {
+                    user.setUserName(userInitUpdateDto.getUserName());
+                } else {
+                    throw new InvalidRequestException("Длина имени должна быть не менее 3 и не более 120 символов");
+                }
             }
-            if (userInitUpdateDto.getPassword() != null) {
-                user.setPassword(userInitUpdateDto.getPassword());
+            if (!userInitUpdateDto.getPassword().isEmpty()) {
+                if ((userInitUpdateDto.getPassword().length() >= 3) && (userInitUpdateDto.getPassword().length() < 120)) {
+                    user.setPassword(userInitUpdateDto.getPassword());
+                } else {
+                    throw new InvalidRequestException("Длина пароля должна быть не менее 3 и не более 120 символов");
+                }
             }
-            if (userInitUpdateDto.getImage() != null) {
+            if (!userInitUpdateDto.getImage().isEmpty()) {
                 saveOnDisk(userInitUpdateDto.getImage());
                 user.setImage(userInitUpdateDto.getImage().getOriginalFilename());
             }
@@ -78,6 +87,7 @@ public class UserServiceImpl implements UserService {
             throw new NotFoundException("Пользователь с id = " + userId + " не был найден");
         }
     }
+
 
 
     @Override
