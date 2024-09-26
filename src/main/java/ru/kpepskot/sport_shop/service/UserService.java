@@ -5,6 +5,7 @@ import ru.kpepskot.sport_shop.dto.user.UserInitDto;
 import ru.kpepskot.sport_shop.dto.user.UserInitUpdateDto;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
     UserDto findUserById(Long id);
@@ -16,4 +17,6 @@ public interface UserService {
     void deleteUserById(Long userId);
 
     List<UserDto> findAllUsers();
+
+    Optional<byte[]> findAvatar(Long id);
 }

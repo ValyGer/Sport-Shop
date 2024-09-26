@@ -12,6 +12,7 @@ public class UserDtoMapper {
                 .id(user.getId())
                 .userEmail(user.getUserEmail())
                 .userName(user.getUserName())
+                .image(user.getImage())
                 .build();
     }
 }

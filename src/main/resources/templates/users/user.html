@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.crg">
 <head>
     <meta charset="UTF-8">
     <title>[[${user.userName}]] &ndash; pet-проект для отработки навыков!</title>
@@ -12,6 +12,9 @@
     <li><strong>name</strong>: <span data-th-text="${user.userName}"></span></li>
     <li><strong>email</strong>: <span data-th-text="${user.userEmail}"></span></li>
 </ul>
+<div th:if="${user.image}">
+    <img width="140" th:src="@{rest/{userId}/avatar(userId=${user.id})}" alt="User image">
+</div>
 <a data-th-href="@{/users/{userId}/edit(userId=${user.id})}">&larr; Редактировать</a>
 <form method="post" data-th-action="@{/users/{userId}/delete(userId=${user.id})}">
     <button type="submit">Удалить</button>
