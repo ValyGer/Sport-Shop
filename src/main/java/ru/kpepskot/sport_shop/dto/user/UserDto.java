@@ -1,4 +1,4 @@
-package ru.kpepskot.sport_shop.dto;
+package ru.kpepskot.sport_shop.dto.user;
 
 import lombok.*;
 
@@ -10,6 +10,7 @@ import lombok.*;
 @Builder
 public class UserDto {
     private long id;
-    private String email;
+    private String userEmail;
     private String userName;
+    private String image;
 }

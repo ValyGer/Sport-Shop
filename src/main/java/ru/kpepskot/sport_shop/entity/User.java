@@ -1,10 +1,9 @@
 package ru.kpepskot.sport_shop.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.validation.annotation.Validated;
+import ru.kpepskot.sport_shop.constant.Role;
 
-import javax.persistence.*;
-import javax.validation.constraints.Email;
 
 @Getter
 @Setter
@@ -17,12 +16,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(unique = true)
-    private String email;
+    @Column(name = "email", unique = true)
+    private String userEmail;
     @Column(name = "user_name")
     private String userName;
     @Column(name = "user_role")
-    private String userRole;
+    @Enumerated(EnumType.STRING)
+    private Role userRole;
     @Column(name = "user_password")
     private String password;
+    private String image;
 }

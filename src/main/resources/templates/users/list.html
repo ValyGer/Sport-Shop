@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список пользователей &ndash; pet-проект для отработки навыков!</title>
+</head>
+<body>
+<a data-th-href="@{/users/new}">+ Создать нового пользователя</a>
+    <h1>Список пользователей</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Имя пользователя</th>
+            <th>Почта пользователя</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-th-each="user : ${users}">
+            <td data-th-text="${user.id}"></td>
+            <td>
+                <a data-th-href="@{users/{userId}(userId=${user.id})}"
+                data-th-text="${user.userName}"></a>
+            </td>
+            <td data-th-text="${user.userEmail}"></td>
+        </tr>
+        </tbody>
+    </table>
+<form method="post" data-th-action="@{/logout}">
+    <button type="submit">Выйти</button>
+</form>
+</body>
+</html>
