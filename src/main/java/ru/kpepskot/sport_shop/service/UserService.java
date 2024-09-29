@@ -1,5 +1,8 @@
 package ru.kpepskot.sport_shop.service;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.kpepskot.sport_shop.dto.user.UserDto;
 import ru.kpepskot.sport_shop.dto.user.UserInitDto;
 import ru.kpepskot.sport_shop.dto.user.UserInitUpdateDto;
@@ -19,4 +22,7 @@ public interface UserService {
     List<UserDto> findAllUsers();
 
     Optional<byte[]> findAvatar(Long id);
+
+    // Security!
+    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 }

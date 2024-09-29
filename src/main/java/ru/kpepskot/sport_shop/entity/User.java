@@ -1,9 +1,9 @@
 package ru.kpepskot.sport_shop.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.web.multipart.MultipartFile;
+import ru.kpepskot.sport_shop.constant.Role;
 
-import javax.persistence.*;
 
 @Getter
 @Setter
@@ -21,7 +21,8 @@ public class User {
     @Column(name = "user_name")
     private String userName;
     @Column(name = "user_role")
-    private String userRole;
+    @Enumerated(EnumType.STRING)
+    private Role userRole;
     @Column(name = "user_password")
     private String password;
     private String image;

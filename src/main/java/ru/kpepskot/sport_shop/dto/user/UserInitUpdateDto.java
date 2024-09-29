@@ -1,10 +1,10 @@
 package ru.kpepskot.sport_shop.dto.user;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.validation.Valid;
-import javax.validation.constraints.Size;
 
 @Getter
 @Setter

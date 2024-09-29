@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.crg">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<!--<div style="color: red" th:if="param.error">-->
+<!--    Неправильный логин и пароль.-->
+<!--</div>-->
+<form method="post" data-th-action="@{/login}">
+    <label>
+        Имя пользователя:<br>
+        <input type="text" name="username">
+    </label><br>
+    <label>
+        Пароль:<br>
+        <input type="text" name="password">
+    </label><br>
+    <button type="submit">Войти</button>
+</form>
+<form action="/users/new">
+    <button type="submit">Регистрироваться</button>
+</form>
+</body>
+</html>

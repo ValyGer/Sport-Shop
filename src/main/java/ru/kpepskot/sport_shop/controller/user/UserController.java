@@ -1,5 +1,6 @@
 package ru.kpepskot.sport_shop.controller.user;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +10,6 @@ import ru.kpepskot.sport_shop.dto.user.UserInitDto;
 import ru.kpepskot.sport_shop.dto.user.UserInitUpdateDto;
 import ru.kpepskot.sport_shop.service.UserService;
 
-import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor

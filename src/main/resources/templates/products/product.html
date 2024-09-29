@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.crg">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${product.productName}]] &ndash; pet-проект для отработки навыков!</title>
+</head>
+<body>
+<a data-th-href="@{/products}">&larr; К списку товаров</a>
+    <h1 data-th-text="${product.productName}"></h1>
+<ul>
+    <li><strong>ID</strong>: <span data-th-text="${product.id}"></span></li>
+    <li><strong>name</strong>: <span data-th-text="${product.productName}"></span></li>
+    <li><strong>description</strong>: <span data-th-text="${product.description}"></span></li>
+</ul>
+<div th:if="${product.image}">
+    <img width="140" th:src="@{rest/{productId}/avatar(productId=${product.id})}" alt="Product image">
+</div>
+<a data-th-href="@{/products/{productId}/edit(productId=${product.id})}">&larr; Редактировать</a>
+<form method="post" data-th-action="@{/products/{productId}/delete(productId=${product.id})}">
+    <button type="submit">Удалить</button>
+</form>
+<form method="post" data-th-action="@{/logout}">
+    <button type="submit">Выйти</button>
+</form>
+</body>
+</html>
