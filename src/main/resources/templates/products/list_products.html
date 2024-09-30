@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.crg">
 <head>
     <meta charset="UTF-8">
     <title>Список продуктов &ndash; pet-проект для отработки навыков!</title>
@@ -10,19 +10,24 @@
     <table>
         <thead>
         <tr>
-            <th>ID</th>
-            <th>Название товара</th>
-            <th>Описание товара</th>
+            <th>Код товара</th>
+            <th>Наименование</th>
+            <th>Описание</th>
+            <th>Изготовитель</th>
+            <th>Стоимость за единицу</th>
+            <th>Вид</th>
         </tr>
         </thead>
         <tbody>
-        <tr data-th-each="product : ${products}">
-            <td data-th-text="${product.id}"></td>
+        <tr data-th-each="product:${products}">
+            <td data-th-text="${product.keyProduct}"></td>
             <td>
                 <a data-th-href="@{products/{productId}(productId=${product.id})}"
                 data-th-text="${product.productName}"></a>
             </td>
             <td data-th-text="${product.description}"></td>
+            <td data-th-text="${product.maker}"></td>
+            <td data-th-text="${product.price}"></td>
         </tr>
         </tbody>
     </table>

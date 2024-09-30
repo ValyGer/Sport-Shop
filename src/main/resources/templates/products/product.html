@@ -8,9 +8,11 @@
 <a data-th-href="@{/products}">&larr; К списку товаров</a>
     <h1 data-th-text="${product.productName}"></h1>
 <ul>
-    <li><strong>ID</strong>: <span data-th-text="${product.id}"></span></li>
-    <li><strong>name</strong>: <span data-th-text="${product.productName}"></span></li>
-    <li><strong>description</strong>: <span data-th-text="${product.description}"></span></li>
+    <li><strong>Код товара</strong>: <span data-th-text="${product.id}"></span></li>
+    <li><strong>Наименование</strong>: <span data-th-text="${product.productName}"></span></li>
+    <li><strong>Описание</strong>: <span data-th-text="${product.description}"></span></li>
+    <li><strong>Изготовитель</strong>: <span data-th-text="${product.maker}"></span></li>
+    <li><strong>Стоимость за единицу</strong>: <span data-th-text="${product.price}"></span></li>
 </ul>
 <div th:if="${product.image}">
     <img width="140" th:src="@{rest/{productId}/avatar(productId=${product.id})}" alt="Product image">

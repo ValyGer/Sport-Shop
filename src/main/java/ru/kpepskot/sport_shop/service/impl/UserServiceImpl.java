@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     @Transactional
     public UserDto createUser(UserInitDto userInitDto) {
-        User user = userInitDtoMapper.UserInitDtoToUser(userInitDto);
+        User user = userInitDtoMapper.userInitDtoToUser(userInitDto);
         user.setPassword(encoder.encode(user.getPassword()));
         user.setUserRole(Role.USER);
         saveOnDisk(userInitDto.getImage());

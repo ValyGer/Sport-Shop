@@ -1,4 +1,4 @@
-package ru.kpepskot.sport_shop.controller.rest;
+package ru.kpepskot.sport_shop.controller.user;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
