@@ -10,13 +10,18 @@ import ru.kpepskot.sport_shop.service.ProductService;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("products/rest/")
+@RequestMapping("products")
 public class ProductRestController {
 
     ProductService productService;
 
-    @GetMapping(value = "/{productId}/avatar", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @GetMapping(value = "/rest/{productId}/avatar", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public byte[] findAvatar(@PathVariable("productId") Long productId) {
+        return productService.findAvatar(productId).orElseThrow(RuntimeException::new);
+    }
+
+        @GetMapping(value = "/{productId}/rest/avatar", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public byte[] findAvatarLofList(@PathVariable("productId") Long productId) {
         return productService.findAvatar(productId).orElseThrow(RuntimeException::new);
     }
 }

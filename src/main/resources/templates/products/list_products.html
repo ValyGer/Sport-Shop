@@ -5,7 +5,8 @@
     <title>Список продуктов &ndash; pet-проект для отработки навыков!</title>
 </head>
 <body>
-<a data-th-href="@{/products/new}">+ Создать новый товар</a>
+<a data-th-href="@{/products/new}">+ Создать новый товар</a><br>
+<a data-th-href="@{/users/new}">+ Открыть страницу пользователя</a>
     <h1>Список товаров</h1>
     <table>
         <thead>
@@ -28,6 +29,11 @@
             <td data-th-text="${product.description}"></td>
             <td data-th-text="${product.maker}"></td>
             <td data-th-text="${product.price}"></td>
+            <td>
+                <div th:if="${product.image}">
+                    <img width="140" th:src="@{products/rest/{productId}/avatar(productId=${product.id})}" alt="Product image">
+                </div>
+            </td>
         </tr>
         </tbody>
     </table>
