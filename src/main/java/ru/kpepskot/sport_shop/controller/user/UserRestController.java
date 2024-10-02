@@ -1,4 +1,4 @@
-package ru.kpepskot.sport_shop.controller.rest;
+package ru.kpepskot.sport_shop.controller.user;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
@@ -10,13 +10,18 @@ import ru.kpepskot.sport_shop.service.UserService;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("users/rest/")
+@RequestMapping("users")
 public class UserRestController {
 
     UserService userService;
 
-    @GetMapping(value = "/{userId}/avatar", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @GetMapping(value = "/rest/{userId}/avatar", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public byte[] findAvatar(@PathVariable("userId") Long userId) {
+        return userService.findAvatar(userId).orElseThrow(RuntimeException::new);
+    }
+
+    @GetMapping(value = "/{userId}/rest/avatar", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public byte[] findAvatarForUpdate(@PathVariable("userId") Long userId) {
         return userService.findAvatar(userId).orElseThrow(RuntimeException::new);
     }
 }

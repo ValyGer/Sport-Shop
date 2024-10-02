@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.crg">
 <head>
     <meta charset="UTF-8">
     <title>Редактирование пользователя &laquo; [[${user.userName}]]&raquo; &ndash; pet-проект для отработки навыков!</title>
@@ -7,19 +7,25 @@
 <body>
 <a data-th-href="@{/users/{userId}(userId=${user.id})}">&larr; К пользователю</a>
     <h1>Редактирование пользователя [[${user.userName}]]</h1>
+    <div th:if="${user.image}">
+        <img width="140" th:src="@{rest/avatar}" alt="User image">
+    </div>
     <form method="post" data-th-action="@{/users/{userId}/edit(userId=${user.id})}" enctype="multipart/form-data">
         <label>
             Имя пользователя:<br>
-            <input type="text" name="userName">
+            <input type="text" name="userName" data-th-value="${user.userName}">
         </label><br>
         <label>
             Пароль:<br>
             <input type="text" name="password">
-        </label><br>
+        </label>
+        <br>
+        <br>
         <label>
-            Картинка:<br>
             <input type="file" name="image">
-        </label><br>
+        </label>
+        <br>
+        <br>
         <button type="submit">Изменить</button>
     </form>
 </body>

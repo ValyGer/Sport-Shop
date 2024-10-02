@@ -6,15 +6,20 @@
 </head>
 <body>
 <a data-th-href="@{/products}">&larr; К списку товаров</a>
-    <h1 data-th-text="${product.productName}"></h1>
-<ul>
-    <li><strong>ID</strong>: <span data-th-text="${product.id}"></span></li>
-    <li><strong>name</strong>: <span data-th-text="${product.productName}"></span></li>
-    <li><strong>description</strong>: <span data-th-text="${product.description}"></span></li>
-</ul>
+<h1 data-th-text="${product.productName}"></h1>
+<br>
 <div th:if="${product.image}">
     <img width="140" th:src="@{rest/{productId}/avatar(productId=${product.id})}" alt="Product image">
 </div>
+<br>
+<ul>
+    <li><strong>Код товара</strong>: <span data-th-text="${product.keyProduct}"></span></li>
+    <li><strong>Наименование</strong>: <span data-th-text="${product.productName}"></span></li>
+    <li><strong>Описание</strong>: <span data-th-text="${product.description}"></span></li>
+    <li><strong>Изготовитель</strong>: <span data-th-text="${product.maker}"></span></li>
+    <li><strong>Стоимость единицы товара в рублях</strong>: <span data-th-text="${product.price}"></span></li>
+</ul>
+
 <a data-th-href="@{/products/{productId}/edit(productId=${product.id})}">&larr; Редактировать</a>
 <form method="post" data-th-action="@{/products/{productId}/delete(productId=${product.id})}">
     <button type="submit">Удалить</button>

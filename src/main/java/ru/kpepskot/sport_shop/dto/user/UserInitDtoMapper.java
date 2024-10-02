@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 @Component
 public class UserInitDtoMapper {
 
-    public User UserInitDtoToUser(UserInitDto userInitDto) {
+    public User userInitDtoToUser(UserInitDto userInitDto) {
         User user = new User();
         user.setUserEmail(userInitDto.getUserEmail());
         user.setUserName(userInitDto.getUserName());

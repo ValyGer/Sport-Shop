@@ -6,15 +6,17 @@
 </head>
 <body>
 <a data-th-href="@{/users}">&larr; К списку пользователей</a>
-    <h1 data-th-text="${user.userName}"></h1>
+<br>
+<h1 data-th-text="${user.userName}"></h1>
+<div th:if="${user.image}">
+    <img width="140" th:src="@{rest/{userId}/avatar(userId=${user.id})}" alt="User image">
+</div>
 <ul>
     <li><strong>ID</strong>: <span data-th-text="${user.id}"></span></li>
     <li><strong>name</strong>: <span data-th-text="${user.userName}"></span></li>
     <li><strong>email</strong>: <span data-th-text="${user.userEmail}"></span></li>
 </ul>
-<div th:if="${user.image}">
-    <img width="140" th:src="@{rest/{userId}/avatar(userId=${user.id})}" alt="User image">
-</div>
+
 <a data-th-href="@{/users/{userId}/edit(userId=${user.id})}">&larr; Редактировать</a>
 <form method="post" data-th-action="@{/users/{userId}/delete(userId=${user.id})}">
     <button type="submit">Удалить</button>
