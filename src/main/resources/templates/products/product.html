@@ -17,7 +17,7 @@
     <li><strong>Наименование</strong>: <span data-th-text="${product.productName}"></span></li>
     <li><strong>Описание</strong>: <span data-th-text="${product.description}"></span></li>
     <li><strong>Изготовитель</strong>: <span data-th-text="${product.maker}"></span></li>
-    <li><strong>Стоимость за единицу</strong>: <span data-th-text="${product.price}"></span></li>
+    <li><strong>Стоимость единицы товара в рублях</strong>: <span data-th-text="${product.price}"></span></li>
 </ul>
 
 <a data-th-href="@{/products/{productId}/edit(productId=${product.id})}">&larr; Редактировать</a>

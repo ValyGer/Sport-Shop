@@ -7,26 +7,27 @@
 <a data-th-href="@{/products/{productId}(productId=${product.id})}">&larr; К товару</a>
     <h1>Редактирование товара [[${product.productName}]]</h1>
 <div th:if="${product.image}">
-    <img width="140" th:src="@{rest/{productId}/avatar(productId=${product.id})}" alt="Product image">
+    <img width="140" th:src="@{rest/avatar}" alt="Product image">
 </div>
 <br>
     <form method="post" data-th-action="@{/products/{productId}/edit(productId=${product.id})}" enctype="multipart/form-data">
         <label>
+            Заменить изображение:<br>
+            <input type="file", name="image">
+        </label><br>
+        <label>
             Наименование товара:<br>
-            <input type="text" name="productName" data-th-value="product.productName">
+            <input type="text" name="productName" data-th-value="${product.productName}">
         </label><br>
         <label>
             Описание товара:<br>
-            <textarea name="description" data-th-value="product.description"></textarea>
+            <textarea name="description" data-th-text="${product.description}"></textarea>
         </label><br>
         <label>
-            Стоимость одного товара:<br>
-            <input type="text" name="price" data-th-value="product.price>
+            Стоимость единицы товара в рублях:<br>
+            <input type="text" name="price" data-th-value="${product.price}">
         </label><br>
-        <label>
-            Картинка:<br>
-            <input type="file", name="image">
-        </label><br>
+
         <button type="submit">Изменить</button>
     </form>
 </body>
